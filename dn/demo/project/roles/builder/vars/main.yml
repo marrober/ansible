@@ -1,4 +1,0 @@
----
-# Variables that are used to override any defaults
-  # Project
-  PROJECT: kube-system

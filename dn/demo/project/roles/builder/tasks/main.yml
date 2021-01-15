@@ -1,9 +1,0 @@
----
-  # tasks file for build stage
-  - name: Check if project "{{ PROJECT }}" exists
-    community.kubernetes.k8s:
-      name: "{{ PROJECT }}"
-      api_version: project.openshift.io/v1
-      kind: Project
-      state: present
-
