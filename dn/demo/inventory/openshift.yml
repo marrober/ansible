@@ -1,5 +1,5 @@
 plugin: community.okd.openshift
 connections:
-  - host: sandbox:6443
-    token: xxxx
+  - host: api.cluster-ec4f.ec4f.example.opentlc.com:6443
+    token: sha256~WxKkhxaEOqAN_8C6btfHWcBhkAnNEyxVtaeIe7aeXEs
     validate_certs: false

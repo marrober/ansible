@@ -7,7 +7,7 @@ spec:
     name: ansible-test-automation
   params:
     - name: project-dir
-      value: /workspace/runner-dir/dn
+      value: /workspace/runner-dir/dn/demo/project
     - name: args
       value:
       - -p
