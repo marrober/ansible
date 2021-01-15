@@ -11,7 +11,7 @@ spec:
     - name: args
       value:
       - -p
-      - builder.yml
+      - builder.yaml
   workspaces:
   - name: runner-dir
     persistentVolumeClaim:

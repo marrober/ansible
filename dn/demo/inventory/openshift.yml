@@ -1,0 +1,5 @@
+plugin: community.okd.openshift
+connections:
+  - host: sandbox:6443
+    token: xxxx
+    validate_certs: false
