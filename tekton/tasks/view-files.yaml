@@ -16,14 +16,14 @@ spec:
     - '-c'
     args:
     - |-
-      echo "$(params.project-dir)"
+      echo "$(workspaces.runner-dir.path)/$(params.project-dir)"
       echo "------------------------------"
     image: registry.redhat.io/ocp-tools-43-tech-preview/source-to-image-rhel8
-    workingDir: $(params.project-dir)
+    workingDir: $(workspaces.runner-dir.path)/$(params.project-dir)
   - name: view-files
     command:
     - ls
     args:
     - -al
     image: registry.redhat.io/ocp-tools-43-tech-preview/source-to-image-rhel8
-    workingDir: $(params.project-dir)
+    workingDir: $(workspaces.runner-dir.path)/$(params.project-dir)

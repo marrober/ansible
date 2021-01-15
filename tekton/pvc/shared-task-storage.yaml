@@ -1,7 +1,7 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: shared-task-storage
+  name: shared-task-storage-2
 spec:
   accessModes:
     - ReadWriteOnce
