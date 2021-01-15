@@ -1,0 +1,29 @@
+apiVersion: tekton.dev/v1alpha1
+kind: Task
+metadata:
+  name: view-files
+spec:
+  params:
+  - name: project-dir
+    type: string
+    default: ""
+  workspaces:
+  - name: runner-dir
+  steps :
+  - name: echo-working-dir
+    command:
+    - /bin/sh
+    - '-c'
+    args:
+    - |-
+      echo "$(params.project-dir)"
+      echo "------------------------------"
+    image: registry.redhat.io/ocp-tools-43-tech-preview/source-to-image-rhel8
+    workingDir: $(params.project-dir)
+  - name: view-files
+    command:
+    - ls
+    args:
+    - -al
+    image: registry.redhat.io/ocp-tools-43-tech-preview/source-to-image-rhel8
+    workingDir: $(params.project-dir)

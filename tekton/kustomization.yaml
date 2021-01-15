@@ -1,0 +1,5 @@
+resources:
+- pipeline/pipeline.yaml
+- pvc/shared-task-storage.yaml
+- resource/sourceContent.yaml
+- tasks/view-files.yaml

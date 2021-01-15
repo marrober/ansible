@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: ansibler-runner-pipeline-run
+spec:
+  serviceAccountName: ansible-deployer-account
+  pipelineRef:
+    name: ansibler-runner-pipeline
+  workspaces:
+    - name: runner-dir
+      persistentvolumeclaim:
+        claimName: ansible-playbooks-pvc

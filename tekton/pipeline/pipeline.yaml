@@ -1,0 +1,72 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: ansible-test-automation
+    pipeline.openshift.io/type: kubernetes
+  name: ansible-test-automation
+  namespace: pipe1
+spec:
+  workspaces:
+  - name: runner-dir
+  params:
+  - name: project-dir
+    type: string
+  - name: args
+    type: array
+  tasks:
+  - name: fetch-repository
+    taskRef:
+      name: git-clone
+      kind: ClusterTask
+    workspaces:
+      - name: output
+        workspace: runner-dir
+    params:
+      - name: url
+        value: |
+          https://github.com/marrober/ansible.git
+      - name: revision
+        value: 'main'
+      - name: deleteExisting
+        value: 'true'
+  - name: view-files-before
+    params:
+      - name: project-dir
+        value: $(params.project-dir)
+    workspaces:
+      - name: runner-dir
+        workspace: runner-dir
+    taskRef:
+      kind: Task
+      name: view-files
+    runAfter:
+    - fetch-repository
+  - name: ansible-runner-test
+    params:
+      - name: project-dir
+        value: $(params.project-dir)
+      - name: args
+        value:
+        - $(params.args)
+    workspaces:
+      - name: runner-dir
+        workspace: runner-dir
+    taskRef:
+      kind: Task
+      name: ansible-runner
+    runAfter:
+    - fetch-repository
+  - name: view-files-after
+    params:
+      - name: project-dir
+        value: $(params.project-dir)
+    workspaces:
+      - name: runner-dir
+        workspace: runner-dir
+    taskRef:
+      kind: Task
+      name: view-files
+    runAfter:
+    -  ansible-runner-test

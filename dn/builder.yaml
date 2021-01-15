@@ -1,0 +1,7 @@
+---
+- name: Source Image Build 
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  roles:
+    - builder
