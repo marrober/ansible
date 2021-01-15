@@ -7,11 +7,14 @@ spec:
     name: ansible-test-automation
   params:
     - name: project-dir
-      value: /workspace/runner-dir/dn/demo/project
+      value: dn/demo/project
     - name: args
       value:
       - -p
       - builder.yaml
+      - --inventory
+      - /workspace/runner-dir/dn/demo/inventory/openshift.yml
+      - -vvv
   workspaces:
   - name: runner-dir
     persistentVolumeClaim:
